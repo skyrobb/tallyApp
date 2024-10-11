@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var tallyIntervalLabel: UILabel!
-    @IBOutlet weak var tallyCountLabel: UILabel!
+    @IBOutlet weak var tallyButton: UIButton!
     
     @IBAction func minusIntervalButtonPressed() {
         let tallyInterval = tallyIntervalLabel.text
@@ -25,13 +25,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tallyButtonPressed() {
-        let tallyCount = tallyCountLabel.text
-        let newTallyCount = Int(tallyCount!)! + Int(tallyIntervalLabel.text!)!
-        tallyCountLabel.text = String(newTallyCount)
+        let tallyCount = tallyButton.titleLabel
+        let newTallyCount = Int(tallyCount!.text!)! + Int(tallyIntervalLabel.text!)!
+        tallyButton.setTitle(String(newTallyCount), for: .normal)
+        tallyButton.setAttributedTitle(NSAttributedString(string: String(newTallyCount), attributes: [.font: UIFont.systemFont(ofSize: .init(100))]), for: .normal)
     }
     
     @IBAction func resetButtonPressed() {
-        tallyCountLabel.text = "0"
+        tallyButton.setAttributedTitle(NSAttributedString(string: String("0"), attributes: [.font: UIFont.systemFont(ofSize: .init(100))]), for: .normal)
     }
     
     override func viewDidLoad() {
